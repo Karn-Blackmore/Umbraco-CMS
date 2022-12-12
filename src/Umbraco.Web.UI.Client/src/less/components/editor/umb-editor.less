@@ -1,38 +1,41 @@
 .umb-editors {
-    .absolute();
-    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
     z-index: 7500;
+    overflow: hidden;
 
     .umb-editor {
         box-shadow: 0px 0 30px 0 rgba(0,0,0,.3);
+        max-width: 90%;
     }
 }
 
 .umb-editor {
-    .absolute();
     background: @brownGrayLight;
-    z-index: @zIndexEditor;
+    height: 100%;
+    width: 100%;
     max-width: 100%;
+    z-index: @zIndexEditor;
+    position: absolute;
 
     &--infiniteMode {
-        transform: none;
-        will-change: transform;
-        transition: transform 400ms ease-in-out;
+        right: 60px;
+        will-change: right;
+        transition: right 400ms ease-in-out, transform 400ms ease-in-out;
 
         &.umb-editor--moveRight {
-            transform: translateX(110%);
+            right: -100%;
         }
     }
 
     &--outOfRange {
-        transform: none;
         display: none;
         will-change: auto;
-        transition: display 0s 320ms;
     }
 
     &--level0 {
-        transform: none;
+        right: 0
     }
 
     &--small .umb-property {
@@ -79,9 +82,7 @@
 
         &--@{size} {
             width: @value;
-            will-change: transform;
-            left: auto;
-
+            will-change: right;
             .umb-editor--container {
                 max-width: @value;
             }
